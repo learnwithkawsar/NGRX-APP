@@ -17,6 +17,29 @@
     "name": "typicode"
   },
   "books": [
-    { "id": 1, "name": "Kawsar Ahmed", "author": "kawsarss", "cost": 420.3 }
+    {
+      "id": 3,
+      "name": "dfg",
+      "author": "gdf",
+      "cost": 4
+    },
+    {
+      "id": 4,
+      "name": "fghgf",
+      "author": "fgh",
+      "cost": 6
+    },
+    {
+      "id": 5,
+      "name": "Kawsar 2",
+      "author": "jk",
+      "cost": 0
+    },
+    {
+      "id": 6,
+      "name": "Kawsar 2",
+      "author": "hfgh",
+      "cost": 0
+    }
   ]
 }

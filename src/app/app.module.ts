@@ -19,7 +19,7 @@ import { appReducer } from './shared/store/app.reducer';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot({ appState: appReducer }),
-    StoreModule.forRoot({}, {}),
+    //StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],

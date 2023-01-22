@@ -7,9 +7,13 @@ import { Appstate } from 'src/app/shared/store/appstate';
 import { BooksService } from '../books.service';
 import {
   booksFetchAPISuccess,
+  deleteBookAPISuccess,
   invokeBooksAPI,
+  invokeDeleteBookAPI,
   invokeSaveNewBookAPI,
+  invokeUpdateBookAPI,
   saveNewBookAPISucess,
+  updateBookAPISucess,
 } from './books.action';
 import { selectBooks } from './books.selector';
 
@@ -54,6 +58,47 @@ export class BooksEffect {
               })
             );
             return saveNewBookAPISucess({ newBook: data });
+          })
+        );
+      })
+    );
+  });
+
+  updateBookAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeUpdateBookAPI),
+      switchMap((action) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.booksService.update(action.updateBook).pipe(
+          map((data) => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return updateBookAPISucess({ updateBook: data });
+          })
+        );
+      })
+    );
+  });
+  deleteBooksAPI$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(invokeDeleteBookAPI),
+      switchMap((actions) => {
+        this.appStore.dispatch(
+          setAPIStatus({ apiStatus: { apiResponseMessage: '', apiStatus: '' } })
+        );
+        return this.booksService.delete(actions.id).pipe(
+          map(() => {
+            this.appStore.dispatch(
+              setAPIStatus({
+                apiStatus: { apiResponseMessage: '', apiStatus: 'success' },
+              })
+            );
+            return deleteBookAPISuccess({ id: actions.id });
           })
         );
       })
